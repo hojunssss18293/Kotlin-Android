@@ -1,48 +1,38 @@
 package com.example.bookmarket
 
+import android.content.Intent
 import android.os.Bundle
-import android.view.View
-import android.widget.ImageView
-import android.widget.Toast
+import android.widget.Button
+import android.widget.EditText
+import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 
-// 책 5장 방식: 액티비티가 View.OnClickListener 를 구현해서 클릭 이벤트를 한 곳에서 처리
-class MainActivity : AppCompatActivity(), View.OnClickListener {
-
-    // 변수 선언하기
-    lateinit var book1: ImageView
-    lateinit var book2: ImageView
-    lateinit var book3: ImageView
-    lateinit var book4: ImageView
-
+class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
         setContentView(R.layout.activity_main)
-
-        // 위젯 id 가져오기
-        book1 = findViewById(R.id.imgBook1)
-        book2 = findViewById(R.id.imgBook2)
-        book3 = findViewById(R.id.imgBook3)
-        book4 = findViewById(R.id.imgBook4)
-
-        // 이벤트 리스너 등록하기
-        book1.setOnClickListener(this)
-        book2.setOnClickListener(this)
-        book3.setOnClickListener(this)
-        book4.setOnClickListener(this)
-    }
-
-    // 이벤트 처리하기
-    override fun onClick(v: View?) {
-        when (v?.id) {
-            R.id.imgBook1 -> showTitle("쉽게 배우는 알고리즘")
-            R.id.imgBook2 -> showTitle("난생처음 MySQL")
-            R.id.imgBook3 -> showTitle("쉽게 배우는 PHP 웹 프로그래밍")
-            R.id.imgBook4 -> showTitle("미라클 HTML5+CSS3+자바스크립트")
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+            insets
         }
-    }
+        val etObj01 : EditText = findViewById(R.id.editText1)
+        val etObj02 : EditText = findViewById(R.id.editText2)
+        val etObj03 : EditText = findViewById(R.id.editText3)
 
-    private fun showTitle(title: String) {
-        Toast.makeText(applicationContext, title, Toast.LENGTH_SHORT).show()
+        val button : Button = findViewById(R.id.button)
+
+        button.setOnClickListener {
+            val intent = Intent(Intent.ACTION_SEND)
+            intent.type = "message/rfc822"
+            intent.putExtra(Intent.EXTRA_EMAIL, arrayOf(etObj01.text.toString()))
+            intent.putExtra(Intent.EXTRA_SUBJECT,  etObj02.text.toString())
+            intent.putExtra(Intent.EXTRA_TEXT, etObj03.text.toString())
+            val intent2 = Intent.createChooser(intent, "앱을 선택하세요")
+            startActivity(intent2)
+        }
     }
 }
