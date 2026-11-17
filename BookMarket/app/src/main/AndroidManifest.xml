@@ -13,30 +13,22 @@
         android:theme="@style/Theme.BookMarket">
         <activity
             android:name=".MainActivity"
-            android:exported="true"
-            android:theme="@style/Theme.BookMarket"
-            android:windowSoftInputMode="adjustResize">
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-                <action android:name="android.intent.action.SEND" />
-                <category android:name="android.intent.category.DEFAULT" />
-                <data android:mimeType="message/rfc822" />
             </intent-filter>
         </activity>
+        <activity android:name=".MenuActivity" />
         <activity
-            android:name=".InterfaceActivity"
-            android:exported="false"
-            android:windowSoftInputMode="adjustResize" />
+            android:name=".BooksActivity"
+            android:label="도서목록"
+            android:theme="@style/MyTheme.BookMarket" />
         <activity
-            android:name=".AbstractClassActivity"
-            android:exported="false"
-            android:windowSoftInputMode="adjustResize" />
-        <activity
-            android:name=".SuperThisActivity"
-            android:exported="false"
-            android:windowSoftInputMode="adjustResize" />
+            android:name=".BookActivity"
+            android:label="도서상세정보"
+            android:theme="@style/MyTheme.BookMarket" />
     </application>
 
 </manifest>

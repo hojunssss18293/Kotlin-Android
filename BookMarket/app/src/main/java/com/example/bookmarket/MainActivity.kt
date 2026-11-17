@@ -2,8 +2,8 @@ package com.example.bookmarket
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Button
-import android.widget.EditText
+import android.view.View
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -19,20 +19,11 @@ class MainActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-        val etObj01 : EditText = findViewById(R.id.editText1)
-        val etObj02 : EditText = findViewById(R.id.editText2)
-        val etObj03 : EditText = findViewById(R.id.editText3)
+    }
 
-        val button : Button = findViewById(R.id.button)
-
-        button.setOnClickListener {
-            val intent = Intent(Intent.ACTION_SEND)
-            intent.type = "message/rfc822"
-            intent.putExtra(Intent.EXTRA_EMAIL, arrayOf(etObj01.text.toString()))
-            intent.putExtra(Intent.EXTRA_SUBJECT,  etObj02.text.toString())
-            intent.putExtra(Intent.EXTRA_TEXT, etObj03.text.toString())
-            val intent2 = Intent.createChooser(intent, "앱을 선택하세요")
-            startActivity(intent2)
-        }
+    fun onBookClick(view: View?) {
+        Toast.makeText(getApplicationContext(), "도서 쇼핑몰을 시작합니다", Toast.LENGTH_LONG).show()
+        val intent: Intent = Intent(this, MenuActivity::class.java)
+        startActivity(intent)
     }
 }
