@@ -41,6 +41,14 @@
             android:name=".order.OrderActivity"
             android:label="주문서"
             android:theme="@style/MyTheme.Cart" />
+        <activity
+            android:name=".mypage.MyPageActivity"
+            android:label="나의 페이지"
+            android:theme="@style/MyTheme.BookMarket" />
+        <activity
+            android:name=".mypage.MemoActivity"
+            android:label="메모장"
+            android:theme="@style/MyTheme.BookMarket" />
     </application>
 
 </manifest>
